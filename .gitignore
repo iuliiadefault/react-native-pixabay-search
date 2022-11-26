@@ -63,3 +63,6 @@ buck-out/
 /vendor/bundle/
 /vendor/
 /.bundle/
+
+# env files
+/.env

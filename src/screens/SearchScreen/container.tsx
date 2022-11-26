@@ -1,13 +1,22 @@
-import * as React from "react";
-import { Text, View } from "react-native";
+import React from "react";
+import { useEffect } from "react";
+import { StatusBar, Text, View } from "react-native";
+import { getImages } from "services/pixabay";
 
 import styles from "./styles";
 
 const SearchScreenContainer = () => {
+  useEffect(() => {
+    getImages("cats").then();
+  }, []);
+
   return (
-    <View style={styles.container}>
-      <Text>Search Screen</Text>
-    </View>
+    <>
+      <StatusBar barStyle="dark-content" />
+      <View style={styles.container}>
+        <Text>Search Screen</Text>
+      </View>
+    </>
   );
 };
 

@@ -10,7 +10,12 @@ const RootNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Search" component={SearchScreenContainer} />
+        <Stack.Screen
+          name="Search"
+          key="Search"
+          component={SearchScreenContainer}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
