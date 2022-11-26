@@ -16,6 +16,10 @@
     "paths": {
       "screens": ["./screens"],
       "navigation": ["./navigation"],
+      "environment": ["./environment"],
+      "constants": ["./constants"],
+      "services": ["./services"],
+      "types": ["./types"],
     }
   },
   "exclude": [

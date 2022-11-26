@@ -18,6 +18,10 @@ module.exports = {
         alias: {
           screens: "./src/screens",
           navigation: "./src/navigation",
+          environment: "./src/environment",
+          constants: "./src/constants",
+          services: "./src/services",
+          types: "./src/types",
         },
       },
     ],
