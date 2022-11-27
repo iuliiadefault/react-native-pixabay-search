@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useContext } from "react";
 import {
   FlatList,
   ListRenderItemInfo,
@@ -18,6 +18,7 @@ import LoadingOverlay from "components/LoadingOverlay";
 import SearchField from "components/SearchField";
 import { Paragraph } from "components/UIKit/text";
 
+import { DimensionsContext } from "context/DimensionsContext";
 import { PixabayImage } from "types/pixabay";
 
 interface Props {
@@ -40,6 +41,7 @@ const SearchScreenView = ({
   query,
 }: Props) => {
   const insets = useSafeAreaInsets();
+  const { edges } = useContext(DimensionsContext);
 
   const renderHeader = useCallback(
     () => (
@@ -67,7 +69,7 @@ const SearchScreenView = ({
     `${item.id}_${item.user}_${index}`;
 
   return (
-    <SafeAreaView style={styles.container} edges={["right", "top", "left"]}>
+    <SafeAreaView style={styles.container} edges={edges}>
       <StatusBar barStyle="dark-content" />
       <LoadingOverlay isLoading={isLoading} />
       <FlatList
@@ -75,7 +77,13 @@ const SearchScreenView = ({
         renderItem={renderItem}
         keyExtractor={keyExtractor}
         ListHeaderComponent={renderHeader}
-        ListHeaderComponentStyle={styles.header}
+        ListHeaderComponentStyle={StyleSheet.flatten([
+          styles.header,
+          {
+            paddingLeft: Math.max(insets.left, 20),
+            paddingRight: Math.max(insets.right, 20),
+          },
+        ])}
         ListEmptyComponent={renderEmptyComponent}
         contentContainerStyle={StyleSheet.flatten([
           styles.contentContainer,
@@ -83,7 +91,13 @@ const SearchScreenView = ({
         ])}
         stickyHeaderIndices={[0]}
         numColumns={2}
-        columnWrapperStyle={styles.column}
+        columnWrapperStyle={StyleSheet.flatten([
+          styles.column,
+          {
+            paddingLeft: Math.max(insets.left, 20),
+            paddingRight: Math.max(insets.right, 12),
+          },
+        ])}
         onEndReached={onEndReached}
         onEndReachedThreshold={0.1}
       />

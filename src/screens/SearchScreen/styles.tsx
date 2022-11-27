@@ -13,7 +13,6 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.gray10,
   },
   header: {
-    paddingHorizontal: 20,
     backgroundColor: Colors.gray10,
     paddingBottom: 24,
     borderBottomWidth: 1,
