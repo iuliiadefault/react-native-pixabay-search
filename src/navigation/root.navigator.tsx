@@ -8,6 +8,7 @@ import SearchStackNavigator from "./searchStack.navigator";
 
 import ErrorBoundary from "screens/ErrorBoundary";
 
+import { DimensionsContextProvider } from "context/DimensionsContext";
 import { persistor, store } from "stores";
 
 const RootNavigator = () => {
@@ -17,7 +18,9 @@ const RootNavigator = () => {
         <PersistGate persistor={persistor}>
           <SafeAreaProvider>
             <NavigationContainer>
-              <SearchStackNavigator />
+              <DimensionsContextProvider>
+                <SearchStackNavigator />
+              </DimensionsContextProvider>
             </NavigationContainer>
           </SafeAreaProvider>
         </PersistGate>
