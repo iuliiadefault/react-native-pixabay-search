@@ -66,9 +66,7 @@ module.exports = {
               ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
               ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
               ["^(@|components|screens|navigation)(/.*|$)"],
-              [
-                "^(@|api|context|generated|environment|hooks|store|types|utils)(/.*|$)",
-              ],
+              ["^(@|environment|hooks|stores|types)(/.*|$)"],
               ["^(@|constants|styles)(/.*|$)"],
             ],
           },
