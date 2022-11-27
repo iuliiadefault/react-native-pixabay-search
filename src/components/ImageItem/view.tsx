@@ -7,8 +7,6 @@ import { H4 } from "components/UIKit/text";
 
 import { PixabayImage } from "types/pixabay";
 
-import { Colors } from "constants/colors";
-
 interface Props {
   data: PixabayImage;
   onPress: () => void;
@@ -17,8 +15,8 @@ interface Props {
 const ImageItemView = ({ data, onPress }: Props) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.container}>
-      <Image source={{ uri: data.previewURL }} style={styles.image} />
-      <H4 color={Colors.gray60}>{`${data.likes} likes`}</H4>
+      <Image source={{ uri: data.webformatURL }} style={styles.image} />
+      <H4>{`${data.imageHeight}x${data.imageWidth}`}</H4>
     </TouchableOpacity>
   );
 };
