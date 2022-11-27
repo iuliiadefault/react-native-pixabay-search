@@ -24,6 +24,8 @@ module.exports = {
           types: "./src/types",
           components: "./src/components",
           stores: "./src/stores",
+          hooks: "./src/hooks",
+          context: "./src/context",
         },
       },
     ],

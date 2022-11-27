@@ -22,6 +22,8 @@
       "types": ["./types"],
       "components": ["./components"],
       "stores": ["./stores"],
+      "hooks": ["./hooks"],
+      "context": ["./context"],
     }
   },
   "exclude": [

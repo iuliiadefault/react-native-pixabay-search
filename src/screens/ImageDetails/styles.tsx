@@ -8,12 +8,12 @@ const styles = StyleSheet.create({
   },
   container: {
     backgroundColor: Colors.gray10,
-    paddingHorizontal: 20,
     paddingVertical: 24,
     justifyContent: "flex-start",
   },
   image: {
-    resizeMode: "contain",
+    backgroundColor: Colors.red,
+    resizeMode: "cover",
     width: "100%",
     marginBottom: 16,
     borderRadius: 20,

@@ -16,6 +16,8 @@ target 'PixabaySearch' do
 
   pod 'react-native-restart', :path => '../node_modules/react-native-restart'
 
+  pod 'react-native-orientation', :path => '../node_modules/react-native-orientation'
+
   target 'PixabaySearchTests' do
     inherit! :complete
     # Pods for testing

@@ -9,12 +9,12 @@ interface Props {
   onPress: (data: PixabayImage) => void;
 }
 
-const ImageItemContainer = ({ data, onPress }: Props) => {
+const ImageItemContainer = React.memo(({ data, onPress }: Props) => {
   const handlePress = () => {
     onPress(data);
   };
 
   return <ImageItemView onPress={handlePress} data={data} />;
-};
+});
 
 export default ImageItemContainer;

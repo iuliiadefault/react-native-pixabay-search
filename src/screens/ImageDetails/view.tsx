@@ -1,11 +1,13 @@
-import React from "react";
-import { Dimensions, Image, ScrollView, StyleSheet, View } from "react-native";
+import React, { useContext } from "react";
+import { Image, ScrollView, StyleSheet, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import styles from "./styles";
 
 import Tags from "components/Tags";
 import { H3, H4, Paragraph } from "components/UIKit/text";
 
+import { DimensionsContext } from "context/DimensionsContext";
 import { PixabayImage } from "types/pixabay";
 
 import { AvatarPlaceholderURL } from "constants/general";
@@ -15,12 +17,21 @@ interface Props {
 }
 
 const ImageDetailsView = ({ data }: Props) => {
-  const height =
-    (data.webformatHeight / data.webformatWidth) *
-    (Dimensions.get("window").width - 40);
+  const insets = useSafeAreaInsets();
+  const { width } = useContext(DimensionsContext);
+  const height = (data.webformatHeight / data.webformatWidth) * (width - 40);
 
   return (
-    <ScrollView style={styles.bg} contentContainerStyle={styles.container}>
+    <ScrollView
+      style={styles.bg}
+      contentContainerStyle={StyleSheet.flatten([
+        styles.container,
+        {
+          paddingLeft: Math.max(insets.left, 20),
+          paddingRight: Math.max(insets.right, 20),
+        },
+      ])}
+    >
       <Tags data={data.tags} />
       <Image
         source={{ uri: data.webformatURL }}
