@@ -1,8 +1,9 @@
 import React from "react";
 import { View } from "react-native";
 
+import styles from "./styles";
+
 import { Paragraph } from "components/UIKit/text";
-import styles from "screens/ImageDetails/styles";
 
 interface Props {
   tags: string[];

@@ -40,6 +40,7 @@ const SearchFieldView = ({
         onFocus={onFocus}
         onBlur={onBlur}
         placeholderTextColor={Colors.gray50}
+        autoCapitalize="none"
       />
       {onClear && (
         <View style={styles.closeButtonContainer}>

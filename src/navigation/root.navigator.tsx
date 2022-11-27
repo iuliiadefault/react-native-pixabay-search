@@ -1,23 +1,28 @@
 import * as React from "react";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { Provider } from "react-redux";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { PersistGate } from "redux-persist/integration/react";
 
-import SearchScreenContainer from "screens/SearchScreen";
+import SearchStackNavigator from "./searchStack.navigator";
 
-const Stack = createNativeStackNavigator();
+import ErrorBoundary from "screens/ErrorBoundary";
+
+import { persistor, store } from "stores";
 
 const RootNavigator = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Search"
-          key="Search"
-          component={SearchScreenContainer}
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <ErrorBoundary>
+      <Provider store={store}>
+        <PersistGate persistor={persistor}>
+          <SafeAreaProvider>
+            <NavigationContainer>
+              <SearchStackNavigator />
+            </NavigationContainer>
+          </SafeAreaProvider>
+        </PersistGate>
+      </Provider>
+    </ErrorBoundary>
   );
 };
 

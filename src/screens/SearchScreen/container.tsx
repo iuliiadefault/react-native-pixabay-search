@@ -1,22 +1,65 @@
-import React from "react";
-import { useEffect } from "react";
-import { StatusBar, Text, View } from "react-native";
-import { getImages } from "services/pixabay";
+import React, { useCallback, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
+import { searchImages } from "services/pixabay";
+import { useDebouncedCallback } from "use-debounce";
 
-import styles from "./styles";
+import SearchScreenView from "./view";
+
+import { RootState } from "stores";
+import SearchState from "stores/searchStore";
+import { SearchScreenNavProp } from "types/navigation";
+import { PixabayImage } from "types/pixabay";
+
+import Routes from "constants/routes";
 
 const SearchScreenContainer = () => {
-  useEffect(() => {
-    getImages("cats").then();
+  const navigation = useNavigation<SearchScreenNavProp>();
+  const dispatch = useDispatch();
+  const { isLoading, isEndReached, data, page } = useSelector(
+    (state: RootState) => state.search
+  );
+
+  const [query, setQuery] = useState("");
+
+  const handleTextChange = useDebouncedCallback((value: string) => {
+    setQuery(value);
+    dispatch(SearchState.actions.resetData());
+    dispatch(searchImages(value, 1));
+    dispatch(SearchState.actions.setPage(2));
+  }, 1000);
+
+  const handlePress = useCallback(
+    (d: PixabayImage) => {
+      navigation.navigate(Routes.DETAILS, { data: d });
+    },
+    [navigation]
+  );
+
+  const handleClear = useCallback(() => {
+    setQuery("");
   }, []);
 
+  const handleEndReached = useDebouncedCallback(() => {
+    // if prev call result was less than limit
+    if (isEndReached) {
+      return;
+    }
+
+    dispatch(SearchState.actions.loadNextPage());
+    dispatch(searchImages(query, page));
+  }, 100);
+
   return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <View style={styles.container}>
-        <Text>Search Screen</Text>
-      </View>
-    </>
+    <SearchScreenView
+      data={data}
+      isLoading={isLoading}
+      query={query}
+      onEndReached={handleEndReached}
+      onClear={handleClear}
+      onSelect={handlePress}
+      onTextChange={handleTextChange}
+    />
   );
 };
 

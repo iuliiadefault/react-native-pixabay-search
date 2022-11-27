@@ -23,6 +23,7 @@ module.exports = {
           services: "./src/services",
           types: "./src/types",
           components: "./src/components",
+          stores: "./src/stores",
         },
       },
     ],

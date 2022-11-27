@@ -21,6 +21,7 @@
       "services": ["./services"],
       "types": ["./types"],
       "components": ["./components"],
+      "stores": ["./stores"],
     }
   },
   "exclude": [
