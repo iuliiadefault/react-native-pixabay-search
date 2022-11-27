@@ -22,6 +22,7 @@ module.exports = {
           constants: "./src/constants",
           services: "./src/services",
           types: "./src/types",
+          components: "./src/components",
         },
       },
     ],

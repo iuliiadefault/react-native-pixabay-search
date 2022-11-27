@@ -20,6 +20,7 @@
       "constants": ["./constants"],
       "services": ["./services"],
       "types": ["./types"],
+      "components": ["./components"],
     }
   },
   "exclude": [
