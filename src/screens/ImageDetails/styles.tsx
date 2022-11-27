@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
   image: {
-    backgroundColor: Colors.red,
+    backgroundColor: Colors.gray30,
     resizeMode: "cover",
     width: "100%",
     marginBottom: 16,

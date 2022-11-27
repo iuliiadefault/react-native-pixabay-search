@@ -15,7 +15,7 @@ interface Props {
 const ImageItemView = ({ data, onPress }: Props) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.container}>
-      <Image source={{ uri: data.webformatURL }} style={styles.image} />
+      <Image source={{ uri: data.previewURL }} style={styles.image} />
       <H4>{`${data.imageHeight}x${data.imageWidth}`}</H4>
     </TouchableOpacity>
   );
