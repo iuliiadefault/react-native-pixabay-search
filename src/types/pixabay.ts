@@ -11,7 +11,7 @@ export type PixabayImage = {
   webformatHeight: number;
   largeImageURL: string;
   fullHDURL: string;
-  imageURL: string;
+  imageURL?: string;
   imageWidth: number;
   imageHeight: number;
   imageSize: number;

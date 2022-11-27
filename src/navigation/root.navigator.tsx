@@ -6,19 +6,23 @@ import { PersistGate } from "redux-persist/integration/react";
 
 import SearchStackNavigator from "./searchStack.navigator";
 
+import ErrorBoundary from "screens/ErrorBoundary";
+
 import { persistor, store } from "stores";
 
 const RootNavigator = () => {
   return (
-    <Provider store={store}>
-      <PersistGate persistor={persistor}>
-        <SafeAreaProvider>
-          <NavigationContainer>
-            <SearchStackNavigator />
-          </NavigationContainer>
-        </SafeAreaProvider>
-      </PersistGate>
-    </Provider>
+    <ErrorBoundary>
+      <Provider store={store}>
+        <PersistGate persistor={persistor}>
+          <SafeAreaProvider>
+            <NavigationContainer>
+              <SearchStackNavigator />
+            </NavigationContainer>
+          </SafeAreaProvider>
+        </PersistGate>
+      </Provider>
+    </ErrorBoundary>
   );
 };
 
