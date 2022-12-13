@@ -16,7 +16,7 @@ import Routes from "constants/routes";
 const SearchScreenContainer = () => {
   const navigation = useNavigation<SearchScreenNavProp>();
   const dispatch = useDispatch();
-  const { isLoading, isEndReached, data, page } = useSelector(
+  const { isLoading, isEndReached, data } = useSelector(
     (state: RootState) => state.search
   );
 
@@ -25,8 +25,8 @@ const SearchScreenContainer = () => {
   const handleTextChange = useDebouncedCallback((value: string) => {
     setQuery(value);
     dispatch(SearchState.actions.resetData());
-    dispatch(searchImages(value, 1));
-    dispatch(SearchState.actions.setPage(2));
+    dispatch(searchImages(value));
+    dispatch(SearchState.actions.loadNextPage());
   }, 1000);
 
   const handlePress = useCallback(
@@ -47,7 +47,7 @@ const SearchScreenContainer = () => {
     }
 
     dispatch(SearchState.actions.loadNextPage());
-    dispatch(searchImages(query, page));
+    dispatch(searchImages(query));
   }, 100);
 
   return (

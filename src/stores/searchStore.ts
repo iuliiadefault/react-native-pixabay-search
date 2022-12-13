@@ -40,12 +40,9 @@ const SearchState = createSlice({
     setPage: (state, action: PayloadAction<number>) => {
       state.page = action.payload;
     },
-    resetData: (state) => {
-      state.data = [];
-      state.page = 1;
-      state.isLoading = false;
-      state.isEndReached = false;
-    },
+    resetData: () => ({
+      ...initialState,
+    }),
   },
 });
 

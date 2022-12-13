@@ -35,11 +35,14 @@ export const getImages = async (
   }
 };
 
-export const searchImages = (q: string, page: number): AppThunk => {
-  return async (dispatch) => {
-    dispatch(SearchState.actions.setLoading(true));
-
+export const searchImages = (q: string): AppThunk => {
+  return async (dispatch, getState) => {
     try {
+      dispatch(SearchState.actions.setLoading(true));
+
+      const {
+        search: { page },
+      } = getState();
       const res = await getImages(q, page);
 
       dispatch(SearchState.actions.addData(res));
